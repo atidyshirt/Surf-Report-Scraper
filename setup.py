@@ -2,13 +2,13 @@
 import setuptools
 
 setuptools.setup(
-    name="srs",
+    name="Surf Report Scraper",
     author="Jordan Pyott",
     author_email="jordanpyott@gmail.com",
-    description="Generate and change color-schemes on the fly",
-    keywords="wal colorscheme terminal-emulators changing-colorschemes",
-    license="MIT",
-    url="",
+    description="To generate the Surf report of a local beach",
+    keywords="Surf Report Web Scraping Amazon Echo",
+    license="",
+    url="https://github.com/atidyshirt/Surf-Report-Scraper",
     packages=["selenium"],
     entry_points={"console_scripts": ["srs=surf-report-scraper.__main__:main"]},
     python_requires=">=3.x",
