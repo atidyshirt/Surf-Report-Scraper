@@ -2,7 +2,7 @@
 import setuptools
 
 setuptools.setup(
-    name="pywal",
+    name="srs",
     author="Jordan Pyott",
     author_email="jordanpyott@gmail.com",
     description="Generate and change color-schemes on the fly",
