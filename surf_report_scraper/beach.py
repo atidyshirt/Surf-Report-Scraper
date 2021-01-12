@@ -64,81 +64,35 @@ class Beach:
 
     def get_temp(self, driver: webdriver.Firefox):
         driver.get(self.report)
-        time.sleep(2)
+        time.sleep(1)
         return driver.find_element(By.XPATH, "/html/body/main/div[2]/div[3]/div/section[1]/div[2]/div/div[1]/div[1]/div[2]/div/div[2]/div[1]/div[2]/p/span").text
 
     def get_period(self, driver: webdriver.Firefox, time_of_day: str):
         if time_of_day == "early":
             driver.get(self.report)
-            time.sleep(2)
+            time.sleep(1)
             return driver.find_element(By.XPATH, "/html/body/main/div[2]/div[3]/div/section[1]/div[2]/div/div[2]/div/div/div/div[2]/div[2]/div/table/tbody/tr[7]/td[2]/small").text
         else:
             driver.get(self.report)
-            time.sleep(2)
+            time.sleep(1)
             return driver.find_element(By.XPATH, "/html/body/main/div[2]/div[3]/div/section[1]/div[2]/div/div[2]/div/div/div/div[2]/div[2]/div/table/tbody/tr[7]/td[3]/small").text
 
     def get_wave_height(self, driver: webdriver.Firefox, time_of_day: str):
         if time_of_day == "early":
             driver.get(self.report)
-            time.sleep(2)
+            time.sleep(1)
             return driver.find_element(By.XPATH, "/html/body/main/div[2]/div[3]/div/section[1]/div[2]/div/div[2]/div/div/div/div[2]/div[2]/div/table/tbody/tr[9]/td[2]/small").text
         else:
             driver.get(self.report)
-            time.sleep(2)
+            time.sleep(1)
             return driver.find_element(By.XPATH, "/html/body/main/div[2]/div[3]/div/section[1]/div[2]/div/div[2]/div/div/div/div[2]/div[2]/div/table/tbody/tr[9]/td[3]/small").text
 
     def get_wind_direction(self, driver: webdriver.Firefox, time_of_day: str):
         if time_of_day == "early":
             driver.get(self.report)
-            time.sleep(2)
+            time.sleep(1)
             return driver.find_element(By.XPATH, "/html/body/main/div[2]/div[3]/div/section[1]/div[2]/div/div[2]/div/div/div/div[2]/div[2]/div/table/tbody/tr[5]/td[2]/small").text
         else:
             driver.get(self.report)
-            time.sleep(2)
+            time.sleep(1)
             return driver.find_element(By.XPATH, "/html/body/main/div[2]/div[3]/div/section[1]/div[2]/div/div[2]/div/div/div/div[2]/div[2]/div/table/tbody/tr[5]/td[3]/small").text
-beaches = {
-    "Wiakuku"  : Beach("Waikuku Beach", "Christchurch", "E", "https://www.metservice.com/marine/regions/christchurch/surf/locations/waikuku-beach-christchurch"),
-    "Brighton" : Beach("New Brighton", "Christchurch", "E", "https://www.metservice.com/marine/regions/christchurch/surf/locations/new-brighton-beach")
-}
-
-def morning_conditions(beach, driver):
-        temp = beach.get_temp(driver)
-        period = beach.get_period(driver, "early")
-        height = beach.get_wave_height(driver, "early")
-        wind = beach.get_wind_direction(driver, "early")
-        if beach.off_shore(wind):
-            wind = "off shore"
-        elif beach.on_shore(wind):
-            wind = "on shore"
-        elif beach.cross_wind(wind):
-            wind = "cross shore"
-
-        return f"{beach.name} is currently {temp}, with waves {height} metres high with a period of {period} seconds and has {wind} winds."
-
-def afternoon_conditions(beach, driver):
-        temp = beach.get_temp(driver)
-        period = beach.get_period(driver, "late")
-        height = beach.get_wave_height(driver, "late")
-        wind = beach.get_wind_direction(driver, "late")
-        if beach.off_shore(wind):
-            wind = "off shore"
-        elif beach.on_shore(wind):
-            wind = "on shore"
-        elif beach.cross_wind(wind):
-            wind = "a cross"
-
-        return f"{beach.name} will be {temp} this afternoon, with waves {height} metres high with a period of {period} seconds and has {wind} winds."
-
-if __name__=="__main__":
-    try:
-        beach = beaches.get("Wiakuku")
-        options = webdriver.FirefoxOptions();
-        options.set_headless()
-        driver = webdriver.Firefox(firefox_options=options)
-        print(morning_conditions(beach, driver))
-        print(afternoon_conditions(beach, driver))
-    finally:
-        try:
-            driver.close()
-        except:
-            pass
