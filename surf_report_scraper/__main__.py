@@ -5,7 +5,7 @@ from list_of_beaches import all_beaches
 def main():
     try:
         beach = all_beaches.get("Wiakuku")
-        options = webdriver.FirefoxOptions();
+        options = webdriver.FirefoxOptions()
         options.set_headless()
         driver = webdriver.Firefox(firefox_options=options)
         print(morning_conditions(beach, driver))

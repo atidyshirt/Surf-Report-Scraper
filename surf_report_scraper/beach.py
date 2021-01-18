@@ -16,11 +16,6 @@ class Beach:
     report : str
         stores the metservice link for the beach
 
-    Functions
-    ---------
-    on_shore   : checks the wind and returns whether it is on shore
-    off_shore  : checks the wind and returns whether it is off shore
-    cross_wind : checks the wind and returns wheather it is a cross wind
     """
 
     def __init__(self, name: str, location: str, direction: str, report: str):
